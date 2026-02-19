@@ -23,7 +23,11 @@ DURATION_SECONDS = 60 # 1 minute for testing
 def record(stream_url):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    timestamp = datetime.utcnow().strftime("%Y-%m-%d_%H-%M")
+    # Get timestamp data
+    now = datetime.utcnow()
+    month = now.strftime("%B")
+    day = now.day
+    year = now.year
     
     # Build the output file name like: TIOLI Radio Show (February 19, 2026).mp3
     output_file = f"{OUTPUT_DIR}/TIOLI Radio Show ({month} {day}, {year}).mp3"
