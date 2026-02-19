@@ -15,8 +15,8 @@ from datetime import datetime
 # Note this was found by inspecting the page anf finding the actual audio stream from https://fastcast4u.com/player/qernhlca/
 STREAM_URL = "https://usa5.fastcast4u.com/proxy/qernhlca?mp=/1"
 OUTPUT_DIR = "TIOLI recordings"
-#DURATION_SECONDS = 5400  # 90 minutes
-DURATION_SECONDS = 60 # 1 minute for testing
+DURATION_SECONDS = 5400  # 90 minutes
+#DURATION_SECONDS = 60 # 1 minute for testing
 
 
 # A function to record the actual podcast
