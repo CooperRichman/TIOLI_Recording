@@ -1,0 +1,39 @@
+# Cooper Richman
+# 19 February 2026
+#
+# The point of this file is to schedule the recording of the TIOLI radioshow hosted by DJ Han and DJ Joe, hosted every Thursday from 9-10AM EST.
+#
+
+name: Record Radio Stream
+
+on:
+  schedule:
+    # Thursday 8:45 AM EST = 13:45 UTC
+    - cron: '45 13 * * 4'
+  workflow_dispatch:
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          pip install requests
+
+      - name: Run recorder
+        run: python record.py
+
+      - name: Commit recording
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git add recordings/*.mp3 || true
+          git commit -m "Weekly radio recording $(date -u)" || echo "No changes"
+          git push
+          
