@@ -6,29 +6,18 @@
 # This link is to see what they have played in the past: https://widgets.spinitron.com/WMUA/show/302592/Take-It-or-Leave-It
 # This link is where to listen: https://fastcast4u.com/player/qernhlca/, or alternatively 91.1FM
 
-
 # Imports and whatnot
 import os
-import re
 import subprocess
-import requests
 from datetime import datetime
 
-# Set the link, the output directory, and also the duration
-PLAYER_URL = "https://fastcast4u.com/player/qernhlca/"
+# Direct audio stream URL
+# Note this was found by inspecting the page anf finding the actual audio stream from https://fastcast4u.com/player/qernhlca/
+STREAM_URL = "https://usa5.fastcast4u.com/proxy/qernhlca?mp=/1"
 OUTPUT_DIR = "TIOLI recordings"
-DURATION_SECONDS = 5400  # 90 minutes
+#DURATION_SECONDS = 5400  # 90 minutes
+DURATION_SECONDS = 60 # 1 minute for testing
 
-# A function to find the stream
-def find_stream():
-    print("Fetching player page...")
-    html = requests.get(PLAYER_URL, timeout=30).text
-
-    match = re.search(r'https://[^"]+\.m3u8', html)
-    if not match:
-        raise Exception("Could not locate stream URL")
-
-    return match.group(0)
 
 # A function to record the actual podcast
 def record(stream_url):
@@ -42,7 +31,7 @@ def record(stream_url):
     cmd = [
         "ffmpeg",
         "-y",
-        "-loglevel", "error",
+        "-loglevel", "info",      # Optional: shows progress in logs
         "-i", stream_url,
         "-t", str(DURATION_SECONDS),
         "-vn",
@@ -52,11 +41,8 @@ def record(stream_url):
     ]
 
     subprocess.run(cmd, check=True)
-
     print("Saved:", output_file)
-
 
 # Execute
 if __name__ == "__main__":
-    stream = find_stream()
-    record(stream)
+    record(STREAM_URL)
