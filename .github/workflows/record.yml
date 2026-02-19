@@ -26,7 +26,7 @@ jobs:
           pip install requests
 
       - name: Run recorder
-        run: python record.py
+        run: python Save_Recording.py
 
       - name: Commit recording
         run: |
