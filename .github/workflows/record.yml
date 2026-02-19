@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -35,4 +35,4 @@ jobs:
       
           git add "TIOLI recordings/*.mp3" || true
           git commit -m "Weekly radio recording $(date -u)" || echo "No changes"
-          git push origin HEAD
+          git push
