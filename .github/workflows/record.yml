@@ -35,5 +35,4 @@ jobs:
       
           git add "TIOLI recordings/*.mp3" || true
           git commit -m "Weekly radio recording $(date -u)" || echo "No changes"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:master
-                
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:master
