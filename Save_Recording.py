@@ -15,7 +15,11 @@ from datetime import datetime
 # Note this was found by inspecting the page anf finding the actual audio stream from https://fastcast4u.com/player/qernhlca/
 STREAM_URL = "https://usa5.fastcast4u.com/proxy/qernhlca?mp=/1"
 OUTPUT_DIR = "TIOLI recordings"
-DURATION_SECONDS = 5400  # 90 minutes
+DURATION_SECONDS = 9000  # 2.5 hours (150 minutes, to account for late start from GitHub)
+# If it was right on time, 7:45AM EST - 10:15AM EST (whcih covers their 9-10AM show).
+# But if it is delayed, lets say it starts at 8:30AM, then it will go to 11AM, which also covers everything. We shall see next week.
+
+#DURATION_SECONDS = 5400  # 90 minutes
 #DURATION_SECONDS = 60 # 1 minute for testing
 
 
