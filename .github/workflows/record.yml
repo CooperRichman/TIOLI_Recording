@@ -8,8 +8,8 @@ name: Record Radio Stream
 
 on:
   schedule:
-    # Thursday 8:15 AM EST = 13:15 UTC
-    - cron: '15 13 * * 4'
+    # Thursday 8:30 AM EST = 13:30 UTC
+    - cron: '30 13 * * 4'
   workflow_dispatch:
 
 jobs:
